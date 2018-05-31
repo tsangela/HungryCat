@@ -1,7 +1,7 @@
 package hungrycat.ui;
 
 import hungrycat.model.Direction;
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 import hungrycat.model.GameState;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -18,13 +18,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static hungrycat.model.Cell.CELL_PIXELS;
-import static hungrycat.model.FeederGame.BOARD_COLS;
-import static hungrycat.model.FeederGame.BOARD_ROWS;
+import static hungrycat.model.Game.BOARD_COLS;
+import static hungrycat.model.Game.BOARD_ROWS;
 
 /**
- * Represents the feeder game application.
+ * Represents the Hungry Cat game application.
  */
-public class FeederApp extends JPanel {
+public class HungryCatApp extends JPanel {
     protected static final int WIDTH  = BOARD_COLS * CELL_PIXELS;
     protected static final int HEIGHT = BOARD_ROWS * CELL_PIXELS;
     private static final int INTERVAL = 200;
@@ -44,9 +44,9 @@ public class FeederApp extends JPanel {
     // "Pop sound" by deraj of Freesound.org
     private static final String POP_SFX_PATH       = "src/main/resources/sfx/pop.au";
 
-    private FeederGame game;
+    private Game game;
     private TitleRenderer tRenderer;
-    private FeederGameRenderer renderer;
+    private MainRenderer renderer;
     private PauseRenderer pRenderer;
     private GameOverRenderer oRenderer;
     private Clip clip;
@@ -59,7 +59,7 @@ public class FeederApp extends JPanel {
     /**
      * Creates and sets up the feeder game window.
      */
-    private FeederApp() {
+    private HungryCatApp() {
         JFrame frame = new JFrame("Game");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
@@ -68,9 +68,9 @@ public class FeederApp extends JPanel {
         setDoubleBuffered(true);
         setSize(WIDTH, HEIGHT);
 
-        game = new FeederGame();
+        game = new Game();
         tRenderer = new TitleRenderer(game);
-        renderer  = new FeederGameRenderer(game);
+        renderer  = new MainRenderer(game);
         pRenderer = new PauseRenderer(game);
         oRenderer = new GameOverRenderer(game);
 
@@ -135,7 +135,7 @@ public class FeederApp extends JPanel {
                     else if (!t.isRunning())
                         t.start();
 
-                    if (game.getFeederFullness() >= factor * LEVEL_INC) {
+                    if (game.getCatFullness() >= factor * LEVEL_INC) {
                         if (t.getDelay() <= 70) {
                             isIntense = true;
                             game.setState(GameState.INTENSE_STATE);
@@ -158,7 +158,7 @@ public class FeederApp extends JPanel {
                     else if (!t.isRunning())
                         t.start();
 
-                    if (game.getFeederFullness() >= factor * LEVEL_INC && t.getDelay() > 40) {
+                    if (game.getCatFullness() >= factor * LEVEL_INC && t.getDelay() > 40) {
                         int newDelay = INTERVAL - (factor * INTERVAL_INC);
                         t.setDelay(newDelay < 40 ? 40 : newDelay);
                         factor++;
@@ -177,7 +177,7 @@ public class FeederApp extends JPanel {
                 sfx(BANG_SFX_PATH);
                 sfx(MEOW_SFX_PATH);
                 music(GAME_OVER_BGM_PATH);
-                System.out.println("Final score: " + game.getFeederFullness());
+                System.out.println("Final score: " + game.getCatFullness());
             }
 
             repaint();
@@ -228,20 +228,20 @@ public class FeederApp extends JPanel {
                     }
                     break;
                 case KeyEvent.VK_LEFT:
-                    if (game.getFeederDirection() != Direction.RIGHT && game.getState() != GameState.PAUSE_STATE)
-                        game.rotateFeeder(Direction.LEFT);
+                    if (game.getCatDirection() != Direction.RIGHT && game.getState() != GameState.PAUSE_STATE)
+                        game.rotateCat(Direction.LEFT);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    if (game.getFeederDirection() != Direction.LEFT && game.getState() != GameState.PAUSE_STATE)
-                        game.rotateFeeder(Direction.RIGHT);
+                    if (game.getCatDirection() != Direction.LEFT && game.getState() != GameState.PAUSE_STATE)
+                        game.rotateCat(Direction.RIGHT);
                     break;
                 case KeyEvent.VK_UP:
-                    if (game.getFeederDirection() != Direction.DOWN && game.getState() != GameState.PAUSE_STATE)
-                        game.rotateFeeder(Direction.UP);
+                    if (game.getCatDirection() != Direction.DOWN && game.getState() != GameState.PAUSE_STATE)
+                        game.rotateCat(Direction.UP);
                     break;
                 case KeyEvent.VK_DOWN:
-                    if (game.getFeederDirection() != Direction.UP && game.getState() != GameState.PAUSE_STATE)
-                        game.rotateFeeder(Direction.DOWN);
+                    if (game.getCatDirection() != Direction.UP && game.getState() != GameState.PAUSE_STATE)
+                        game.rotateCat(Direction.DOWN);
                     break;
             }
         }
@@ -308,6 +308,6 @@ public class FeederApp extends JPanel {
 //        String nm = br.readLine();
 //        System.out.println("Welcome, " + nm + "!");
 
-        new FeederApp();
+        new HungryCatApp();
     }
 }

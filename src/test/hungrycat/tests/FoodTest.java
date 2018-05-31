@@ -1,7 +1,7 @@
 package hungrycat.tests;
 
 import hungrycat.model.Cell;
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 import hungrycat.model.Food;
 import hungrycat.model.FoodType;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,13 +15,13 @@ public class FoodTest {
 
     @BeforeEach
     public void runBefore() {
-        Cell cell = new Cell(FeederGame.BOARD_ROWS /2, FeederGame.BOARD_COLS);
+        Cell cell = new Cell(Game.BOARD_ROWS /2, Game.BOARD_COLS);
         testFood = new Food(cell);
     }
 
     @Test
     public void testConstructor() {
-        assertEquals(new Cell(FeederGame.BOARD_ROWS /2, FeederGame.BOARD_COLS),
+        assertEquals(new Cell(Game.BOARD_ROWS /2, Game.BOARD_COLS),
                 testFood.getPosition());
     }
 
@@ -31,13 +31,13 @@ public class FoodTest {
         if (type == FoodType.C) {
             assertEquals(1, testFood.getValue());
         } else if (type == FoodType.B) {
-            assertEquals(3, testFood.getValue());
+            assertEquals(2, testFood.getValue());
         } else if (type == FoodType.A) {
-            assertEquals(5, testFood.getValue());
+            assertEquals(3, testFood.getValue());
         } else if (type == FoodType.S) {
-            assertEquals(10, testFood.getValue());
+            assertEquals(4, testFood.getValue());
         } else if (type == FoodType.SS) {
-            assertEquals(50, testFood.getValue());
+            assertEquals(10, testFood.getValue());
         } else {
             fail("Food type is none of SS, S, A, B, C!");
         }

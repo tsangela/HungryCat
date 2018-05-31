@@ -1,20 +1,20 @@
 package hungrycat.model;
 
 /**
- * Represents the feeder character.
+ * Represents the cat character.
  */
-public class Feeder {
+public class Cat {
     private Cell      position;
     private Direction direction;
     private int       fullness;
     private boolean   canStep;
 
     /**
-     * Creates a feeder at given position on screen, facing up, that has consumed no food.
+     * Creates a cat at given position on screen, facing up, that has consumed no food.
      *
-     * @param position  the position on the screen feeder is to be placed.
+     * @param position  the position on the screen cat is to be placed.
      */
-    public Feeder(Cell position) {
+    public Cat(Cell position) {
         this.position = position;
         direction = Direction.UP;
         fullness = 0;
@@ -23,9 +23,9 @@ public class Feeder {
 
 
     /**
-     * Returns the position of the feeder.
+     * Returns the position of the cat.
      *
-     * @return the current cell of the feeder.
+     * @return the current cell of the cat.
      */
     public Cell getPosition() {
         return position;
@@ -33,9 +33,9 @@ public class Feeder {
 
 
     /**
-     * Returns the direction in which the feeder is facing.
+     * Returns the direction in which the cat is facing.
      *
-     * @return the current direction of the feeder.
+     * @return the current direction of the cat.
      */
     public Direction getDirection() {
         return direction;
@@ -43,16 +43,16 @@ public class Feeder {
 
 
     /**
-     * Returns the fullness level of the feeder.
+     * Returns the fullness level of the cat.
      *
-     * @return an integer indicating the feeder's level of fullness.
+     * @return an integer indicating the cat's level of fullness.
      */
     public int getFullness() {
         return fullness;
     }
 
     /**
-     * Rotates feeder to the given direction.
+     * Rotates cat to the given direction.
      */
     public void rotate(Direction d) {
         if (canStep) {
@@ -62,7 +62,7 @@ public class Feeder {
     }
 
     /**
-     * Advance feeder one cell in the direction it is facing.
+     * Advance cat one cell in the direction it is facing.
      */
     public void move() {
         switch(direction) {
@@ -83,7 +83,7 @@ public class Feeder {
     }
 
     /**
-     * Adds nutritional value of consumed food to fullness level of feeder.
+     * Adds nutritional value of consumed food to fullness level of cat.
      */
     public void eat(Food food) {
         fullness += food.getValue();

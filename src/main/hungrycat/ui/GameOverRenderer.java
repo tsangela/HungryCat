@@ -1,11 +1,11 @@
 package hungrycat.ui;
 
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 
 import java.awt.*;
 
-import static hungrycat.ui.FeederApp.HEIGHT;
-import static hungrycat.ui.FeederApp.WIDTH;
+import static hungrycat.ui.HungryCatApp.HEIGHT;
+import static hungrycat.ui.HungryCatApp.WIDTH;
 
 public class GameOverRenderer extends AbstractRenderer {
     private static final Color GAME_OVER_COLOR = new Color(56, 56, 56);
@@ -17,7 +17,7 @@ public class GameOverRenderer extends AbstractRenderer {
      *
      * @param game  the game to render.
      */
-    public GameOverRenderer(FeederGame game) {
+    public GameOverRenderer(Game game) {
         super(game);
     }
 
@@ -28,7 +28,7 @@ public class GameOverRenderer extends AbstractRenderer {
      */
     @Override
     public void draw(Graphics graphics) {
-        FeederGameRenderer r = new FeederGameRenderer(game);
+        MainRenderer r = new MainRenderer(game);
         r.draw(graphics);
 
 //        graphics.setColor(GAME_OVER_COLOR);

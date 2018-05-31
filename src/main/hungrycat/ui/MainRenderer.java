@@ -1,7 +1,7 @@
 package hungrycat.ui;
 
 import hungrycat.model.Cell;
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 import hungrycat.model.FoodType;
 
 import javax.imageio.ImageIO;
@@ -10,14 +10,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static hungrycat.ui.FeederApp.HEIGHT;
-import static hungrycat.ui.FeederApp.WIDTH;
-import static hungrycat.ui.FeederApp.isIntense;
+import static hungrycat.ui.HungryCatApp.HEIGHT;
+import static hungrycat.ui.HungryCatApp.WIDTH;
+import static hungrycat.ui.HungryCatApp.isIntense;
 
 /**
  * Represents a feeder game renderer.
  */
-public class FeederGameRenderer extends AbstractRenderer{
+public class MainRenderer extends AbstractRenderer{
     // TODO: upgrade background!
     private static final Color DEFAULT_COLOR   = new Color(201, 255, 223);
     private static final Color INTENSE_COLOUR  = new Color(211, 0, 250);
@@ -41,7 +41,7 @@ public class FeederGameRenderer extends AbstractRenderer{
      *
      * @param game  the game to render.
      */
-    FeederGameRenderer(FeederGame game) {
+    MainRenderer(Game game) {
         super(game);
     }
 
@@ -97,7 +97,7 @@ public class FeederGameRenderer extends AbstractRenderer{
     private void drawFullness(Graphics graphics) {
         Font font = new Font("Monospaced", Font.PLAIN, 12);
         Color color = new Color(0,0,0);
-        int fullness = game.getFeederFullness();
+        int fullness = game.getCatFullness();
 
         graphics.setFont(font);
         graphics.setColor(color);
@@ -147,7 +147,7 @@ public class FeederGameRenderer extends AbstractRenderer{
      */
     private void drawFeeder(Graphics graphics) throws IOException {
         String pathName = "";
-        switch (game.getFeederDirection()) {
+        switch (game.getCatDirection()) {
             case UP:
                 pathName = CAT_U_PATH;
                 break;
@@ -166,7 +166,7 @@ public class FeederGameRenderer extends AbstractRenderer{
         final double FILL_PERCENT = 0.90;
         final int SIZE = (int) (Cell.CELL_PIXELS * FILL_PERCENT);
 
-        Cell feederPosition = game.getFeederPosition();
+        Cell feederPosition = game.getCatPosition();
         graphics.drawImage(image, feederPosition.getTopLeftX(), feederPosition.getTopLeftY(), SIZE, SIZE, null);
     }
 

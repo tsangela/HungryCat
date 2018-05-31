@@ -1,13 +1,13 @@
 package hungrycat.ui;
 
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 
 import java.awt.*;
 
 public abstract class AbstractRenderer {
-    protected FeederGame game;
+    protected Game game;
 
-    public AbstractRenderer(FeederGame game) {
+    public AbstractRenderer(Game game) {
         this.game = game;
     }
 

@@ -1,12 +1,12 @@
 package hungrycat.ui;
 
 
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 
 import java.awt.*;
 
-import static hungrycat.ui.FeederApp.HEIGHT;
-import static hungrycat.ui.FeederApp.WIDTH;
+import static hungrycat.ui.HungryCatApp.HEIGHT;
+import static hungrycat.ui.HungryCatApp.WIDTH;
 
 /**
  * Represents a title renderer.
@@ -21,7 +21,7 @@ public class TitleRenderer extends AbstractRenderer {
      *
      * @param game  the game to render.
      */
-    TitleRenderer(FeederGame game) {
+    TitleRenderer(Game game) {
         super(game);
     }
 

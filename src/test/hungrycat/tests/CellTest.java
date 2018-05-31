@@ -1,7 +1,7 @@
 package hungrycat.tests;
 
 import hungrycat.model.Cell;
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class CellTest {
 
     @BeforeEach
     public void runBefore() {
-        testCell = new Cell(FeederGame.BOARD_ROWS /2, FeederGame.BOARD_COLS);
+        testCell = new Cell(Game.BOARD_ROWS /2, Game.BOARD_COLS);
     }
 
     @Test

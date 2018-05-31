@@ -1,11 +1,11 @@
 package hungrycat.ui;
 
-import hungrycat.model.FeederGame;
+import hungrycat.model.Game;
 
 import java.awt.*;
 
-import static hungrycat.ui.FeederApp.HEIGHT;
-import static hungrycat.ui.FeederApp.WIDTH;
+import static hungrycat.ui.HungryCatApp.HEIGHT;
+import static hungrycat.ui.HungryCatApp.WIDTH;
 
 public class PauseRenderer extends AbstractRenderer {
     private static final Color PAUSE_COLOR = new Color(255, 255, 255);
@@ -16,7 +16,7 @@ public class PauseRenderer extends AbstractRenderer {
      *
      * @param game  the game to render.
      */
-    public PauseRenderer(FeederGame game) {
+    public PauseRenderer(Game game) {
         super(game);
     }
 
@@ -31,7 +31,7 @@ public class PauseRenderer extends AbstractRenderer {
 //        graphics.fillRect(0,0, WIDTH, HEIGHT);
 
 
-        FeederGameRenderer r = new FeederGameRenderer(game);
+        MainRenderer r = new MainRenderer(game);
         r.draw(graphics);
 
         drawPause(graphics);

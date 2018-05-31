@@ -3,36 +3,36 @@ package hungrycat.model;
 import java.util.Random;
 
 /**
- * Represents a game of feeder.
+ * Represents a game of Hungry Cat.
  */
-public class FeederGame {
+public class Game {
     public static final int BOARD_ROWS = 20;
     public static final int BOARD_COLS = BOARD_ROWS;
 
     private Random    random;
-    private Feeder    feeder;
+    private Cat       cat;
     private Food      food;
     private GameState state;
 
     /**
-     * Creates a game with the feeder at the center of the board and a food item at
+     * Creates a game with the cat at the center of the board and a food item at
      * a random cell set to the title game state.
      */
-    public FeederGame() {
+    public Game() {
         random = new Random();
-        feeder = new Feeder(new Cell(BOARD_ROWS/2, BOARD_COLS/2));
+        cat = new Cat(new Cell(BOARD_ROWS/2, BOARD_COLS/2));
         food   = createFood();
         state  = GameState.TITLE_STATE;
     }
 
     /**
-     * If game the is not over, move the feeder.
-     * If feeder reached a food item, eat it and create a new food item at random location.
+     * If game the is not over, move the cat.
+     * If cat reached a food item, eat it and create a new food item at random location.
      */
     public void update() {
         if (!isGameOver()) {
-            feeder.move();
-            if (canFeederEat()) {
+            cat.move();
+            if (canCatEat()) {
                 eatFood();
                 food = createFood();
             }
@@ -40,30 +40,30 @@ public class FeederGame {
     }
 
     /**
-     * Returns the position of the feeder.
+     * Returns the position of the cat.
      *
-     * @return the current cell of the feeder.
+     * @return the current cell of the cat.
      */
-    public Cell getFeederPosition() {
-        return feeder.getPosition();
+    public Cell getCatPosition() {
+        return cat.getPosition();
     }
 
     /**
-     * Returns the direction in which the feeder is facing.
+     * Returns the direction in which the cat is facing.
      *
-     * @return the current direction of the feeder.
+     * @return the current direction of the cat.
      */
-    public Direction getFeederDirection() {
-        return feeder.getDirection();
+    public Direction getCatDirection() {
+        return cat.getDirection();
     }
 
     /**
-     * Returns the fullness level of the feeder.
+     * Returns the fullness level of the cat.
      *
-     * @return an integer indicating the feeder's level of fullness.
+     * @return an integer indicating the cat's level of fullness.
      */
-    public int getFeederFullness() {
-        return feeder.getFullness();
+    public int getCatFullness() {
+        return cat.getFullness();
     }
 
     /**
@@ -112,16 +112,16 @@ public class FeederGame {
     /**
      * Returns true if the game is over, false otherwise.
      *
-     * @return true if the feeder goes out of the game window.
+     * @return true if the cat goes out of the game window.
      */
     public boolean isGameOver() {
-        return !isInFrame(feeder.getPosition());
+        return !isInFrame(cat.getPosition());
     }
 
     /**
-     * Returns true if the feeder is within the game window, false otherwise.
+     * Returns true if the cat is within the game window, false otherwise.
      *
-     * @return true if the feeder's position is within the frame, false otherwise.
+     * @return true if the cat's position is within the frame, false otherwise.
      */
     private boolean isInFrame(Cell cell) {
         return cell.getCol() >= 0 && cell.getCol() < BOARD_COLS
@@ -129,44 +129,44 @@ public class FeederGame {
     }
 
     /**
-     * Returns true if the feeder can eat a food item.
+     * Returns true if the cat can eat a food item.
      *
-     * @return true if the feeder has reached a food cell.
+     * @return true if the cat has reached a food cell.
      */
-    private boolean canFeederEat() {
-        return feeder.getPosition().equals(food.getPosition());
+    private boolean canCatEat() {
+        return cat.getPosition().equals(food.getPosition());
     }
 
     /**
-     * The feeder eats the food.
+     * The cat eats the food.
      */
     private void eatFood() {
-        assert canFeederEat();
-        feeder.eat(food);
+        assert canCatEat();
+        cat.eat(food);
     }
 
     /**
      * Returns a random food at a random location.
      *
      * @return a food item of random type at a random cell other than the current
-     *         location of the feeder.
+     *         location of the cat.
      */
     private Food createFood() {
         Cell position = randomCell();
 
-        while (position.equals(feeder.getPosition()))
+        while (position.equals(cat.getPosition()))
             position = randomCell();
 
         return new Food(position);
     }
 
     /**
-     * Rotates the feeder to the given direction.
+     * Rotates the cat to the given direction.
      *
-     * @param d The direction to rotate the feeder.
+     * @param d The direction to rotate the cat.
      */
-    public void rotateFeeder(Direction d) {
-        feeder.rotate(d);
+    public void rotateCat(Direction d) {
+        cat.rotate(d);
     }
 
     /**
