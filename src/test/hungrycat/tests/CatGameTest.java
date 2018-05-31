@@ -65,9 +65,8 @@ public class CatGameTest {
             testGame.update();
 
         assertFalse(testGame.isGameOver());
-
+        
         testGame.update();
-
         assertTrue(testGame.isGameOver());
     }
 
