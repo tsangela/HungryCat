@@ -39,6 +39,7 @@ public class TitleRenderer extends AbstractRenderer {
         drawVersion(graphics);
         drawInstructions(graphics);
         drawContinue(graphics);
+        drawMadeBy(graphics);
     }
 
     /**
@@ -64,7 +65,7 @@ public class TitleRenderer extends AbstractRenderer {
      * @param graphics  the graphics on which to be drawn.
      */
     private void drawVersion(Graphics graphics) {
-        Font font = new Font(Font.SERIF, Font.ITALIC, 10);
+        Font font = new Font(Font.SERIF, Font.ITALIC, 11);
         String text = VERSION;
 
         graphics.setFont(font);
@@ -111,6 +112,18 @@ public class TitleRenderer extends AbstractRenderer {
         FontMetrics metrics = graphics.getFontMetrics();
         int x = (WIDTH - metrics.stringWidth(text)) / 2;
         int y = (HEIGHT / 2) + 70;
+        graphics.drawString(text, x, y);
+    }
+
+    private void drawMadeBy(Graphics graphics) {
+        Font font = new Font(Font.MONOSPACED, Font.ITALIC, 11);
+        String text = "by tsangela";
+
+        graphics.setFont(font);
+        graphics.setColor(new Color(0,0,0));
+        FontMetrics metrics = graphics.getFontMetrics();
+        int x = WIDTH - metrics.stringWidth(text) - 4;
+        int y = 12;
         graphics.drawString(text, x, y);
     }
 

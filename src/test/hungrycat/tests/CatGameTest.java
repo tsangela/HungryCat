@@ -65,7 +65,7 @@ public class CatGameTest {
             testGame.update();
 
         assertFalse(testGame.isGameOver());
-        
+
         testGame.update();
         assertTrue(testGame.isGameOver());
     }
@@ -87,7 +87,7 @@ public class CatGameTest {
     }
 
     @Test
-    public void testRotateFeeder() {
+    public void testRotateCat() {
         testGame.rotateCat(Direction.UP);
         assertEquals(Direction.UP, testGame.getCatDirection());
         testGame.rotateCat(Direction.LEFT);
@@ -105,12 +105,12 @@ public class CatGameTest {
     }
 
     // MODIFIES: this
-    // EFFECTS:  move feeder to cell containing food so that food is eaten
+    // EFFECTS:  move cat to cell containing food so that food is eaten
     private void eatFood() {
         Cell foodPosition = testGame.getFoodPosition();
-        Cell feederPosition = testGame.getCatPosition();
-        int rowDiff = foodPosition.getRow() - feederPosition.getRow();
-        int colDiff = foodPosition.getCol() - feederPosition.getCol();
+        Cell catPosition = testGame.getCatPosition();
+        int rowDiff = foodPosition.getRow() - catPosition.getRow();
+        int colDiff = foodPosition.getCol() - catPosition.getCol();
 
         if (rowDiff > 0) {
             testGame.rotateCat(Direction.DOWN);
