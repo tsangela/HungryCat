@@ -8,7 +8,6 @@ import sun.audio.AudioStream;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -77,9 +76,7 @@ public class HungryCatApp extends JPanel {
         frame.addKeyListener(new KeyHandler());
         centerOnScreen(frame);
         addTimer();
-
-        setBorder(new LineBorder(Color.RED, 10));
-
+        
         frame.add(this);
         frame.setVisible(true);
 

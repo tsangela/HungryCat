@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26f2f11a-3e39-4ec5-b696-8f87a049b2fe" name="Default" comment="Added credit">
+    <list default="true" id="26f2f11a-3e39-4ec5-b696-8f87a049b2fe" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/hungrycat/ui/TitleRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/hungrycat/ui/TitleRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/hungrycat/tests/CatGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/hungrycat/tests/CatGameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HungryCat/hungrycat/ui/TitleRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HungryCat/hungrycat/ui/TitleRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,35 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HungryCatApp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-72">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainRenderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/MainRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1022">
-              <caret line="73" column="42" selection-start-line="73" selection-start-column="42" selection-end-line="73" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PauseRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/PauseRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="113">
+              <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="157" column="68" selection-start-line="157" selection-start-column="68" selection-end-line="157" selection-end-column="68" />
+            <state relative-caret-position="-714">
+              <caret line="164" column="81" lean-forward="true" selection-start-line="164" selection-start-column="81" selection-end-line="164" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -116,6 +92,27 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HungryCatApp.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="78" column="8" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/hungrycat/model/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1787">
+              <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -145,6 +142,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>feeder</find>
+      <find>fullness:</find>
+      <find>fullness</find>
+      <find>border</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,10 +172,10 @@
         <option value="$PROJECT_DIR$/src/main/hungrycat/model/CatGame.java" />
         <option value="$PROJECT_DIR$/src/main/hungrycat/ui/FeederApp.java" />
         <option value="$PROJECT_DIR$/src/main/hungrycat/model/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java" />
-        <option value="$PROJECT_DIR$/src/main/hungrycat/ui/MainRenderer.java" />
         <option value="$PROJECT_DIR$/src/test/hungrycat/tests/CatGameTest.java" />
         <option value="$PROJECT_DIR$/src/main/hungrycat/ui/TitleRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/hungrycat/ui/MainRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java" />
       </list>
     </option>
   </component>
@@ -378,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527800951875</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added made by message on title">
+      <created>1527801651241</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1527801651241</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -427,7 +434,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renamed classes for a more accurate representation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed classes for a more accurate representation" />
+    <MESSAGE value="Added made by message on title" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added made by message on title" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/hungrycat/tests/FoodTest.java">
@@ -551,13 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/hungrycat/model/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1787">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/hungrycat/model/GameState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -579,26 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/MainRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1022">
-          <caret line="73" column="42" selection-start-line="73" selection-start-column="42" selection-end-line="73" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -670,8 +651,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="157" column="68" selection-start-line="157" selection-start-column="68" selection-end-line="157" selection-end-column="68" />
+        <state relative-caret-position="-714">
+          <caret line="164" column="81" lean-forward="true" selection-start-line="164" selection-start-column="81" selection-end-line="164" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/hungrycat/model/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1787">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/MainRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/hungrycat/ui/HungryCatApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="78" column="8" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
