@@ -1,6 +1,7 @@
 package hungrycat.model;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -13,17 +14,21 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum FoodType {
-    // TODO: create "bomb" with negative nutritional value and time limit
-    SS(20, 0),
-    S(10, 2),
-    A(5, 9),
-    B(2, 29),
-    C(1, 99);
+    // Special items
+    BOMB(-10, 0, 0),
+    SLOW(0, 10, 2),
+    // Foods
+    SS(20, 0, 3),
+    S(10, 0, 6),
+    A(5, 0, 12),
+    B(2, 0, 35),
+    C(1, 0, 100);
 
     private static final Random RANDOM = new Random();
 
     private final int value; // Associated nutritional value of a food type
-    private final int upper; // Upper bound of distribution spectrum
+    private final int deceleration; // Slow-down factor
+    private final double upper; // Upper bound of distribution spectrum
 
     /**
      * Returns a type of food based on its probability of appearance.
@@ -31,11 +36,15 @@ public enum FoodType {
      * @return a type of food.
      */
     public static FoodType getRandomFoodType() {
-        int random = RANDOM.nextInt(99);
-        // System.out.println(random + " -> " + foodType.name());
-        return Arrays.stream(FoodType.values())
+        double random = RANDOM.nextDouble() * 100;
+        List<FoodType> types = Arrays.stream(FoodType.values())
                 .filter(type -> type.getUpper() >= random)
-                .collect(Collectors.toList())
-                .get(0);
+                .collect(Collectors.toList());
+        System.out.println(random + " -> " + types);
+        return types.get(0);
+//        return Arrays.stream(FoodType.values())
+//                .filter(type -> type.getUpper() >= random)
+//                .collect(Collectors.toList())
+//                .get(0);
     }
 }

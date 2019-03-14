@@ -1,6 +1,7 @@
 package hungrycat.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents the cat character.
@@ -12,6 +13,8 @@ public class Cat {
     private int fullness;  // Fullness level of the cat
     private boolean canStep;
     private int level;
+    @Setter
+    private int deceleration;
 
     /**
      * Creates a cat at given position on screen, facing up, that has consumed no food.
@@ -24,6 +27,7 @@ public class Cat {
         fullness = 0;
         canStep = true;
         level = 0;
+        deceleration = 0;
     }
 
     /**
@@ -62,10 +66,16 @@ public class Cat {
      */
     public void eat(Food food) {
         fullness += food.getValue();
+        deceleration += food.getDeceleration();
+        // ++level;
     }
 
     public void levelUp() {
         ++level;
     }
+
+//    public void decelerate() {
+//        deceleration += food.
+//    }
 
 }

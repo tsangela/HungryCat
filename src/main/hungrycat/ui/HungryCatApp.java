@@ -15,6 +15,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
+import hungrycat.model.Cat;
 import hungrycat.model.Direction;
 import hungrycat.model.Game;
 import hungrycat.model.GameState;
@@ -36,7 +37,7 @@ public class HungryCatApp extends JPanel {
     public static final int WIDTH = BOARD_COLS * CELL_PIXELS;
     public static final int HEIGHT = BOARD_ROWS * CELL_PIXELS;
     private static final int INTERVAL = 200;
-    private static final int INTERVAL_INC = 10;
+    private static final int INTERVAL_INC = 5;
 
     private static final String BGM_PATH = "src/main/resources/music/lv0.wav";            // Main BGM:         "Level 0" by Monplaisir
     private static final String INTENSE_BGM_PATH = "src/main/resources/music/lv3.wav";    // Intense Mode BGM: "Level 3" by Monplaisir
@@ -124,7 +125,7 @@ public class HungryCatApp extends JPanel {
                     break;
                 default:
                     game.update();
-                    incrementFactor();
+                    speedUp();
                     if (game.isGameOver()) {
                         handleGameOver();
                         break;
@@ -151,19 +152,20 @@ public class HungryCatApp extends JPanel {
     }
 
     /**
-     * Increment the speed level according to fullness.
+     * Increment the speed according to level.
      */
-    private void incrementFactor() {
+    private void speedUp() {
         int delay = timer.getDelay();
         if (delay <= 70 && game.getState() != GameState.INTENSE_STATE) {
             game.setState(GameState.INTENSE_STATE);
             clip.stop();
             music(INTENSE_BGM_PATH);
         } else if (delay > 40) {
-            System.out.print(timer.getDelay() + " -> ");
-            int newDelay = INTERVAL - (game.getCat().getLevel() * INTERVAL_INC);
+            // System.out.print(delay + " -> ");
+            Cat cat = game.getCat();
+            int newDelay = INTERVAL - (cat.getLevel() * INTERVAL_INC) + cat.getDeceleration();
             timer.setDelay(newDelay < 40 ? 40 : newDelay);
-            System.out.println(timer.getDelay());
+            // System.out.println(timer.getDelay());
         }
     }
 

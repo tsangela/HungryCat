@@ -36,6 +36,8 @@ public class MainRenderer extends AbstractRenderer {
     private static final String A_PATH = "src/main/resources/food/A.png";
     private static final String B_PATH = "src/main/resources/food/B.png";
     private static final String C_PATH = "src/main/resources/food/C.png";
+    private static final String BOMB_PATH = "src/main/resources/food/BOMB.png";
+    private static final String SLOW_PATH = "src/main/resources/food/SLOW.png";
 
     /**
      * Creates a feeder game renderer set to the given game.
@@ -64,7 +66,6 @@ public class MainRenderer extends AbstractRenderer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // TODO: draw level! (bottom left corner? right corner?)
     }
 
     /**
@@ -136,6 +137,10 @@ public class MainRenderer extends AbstractRenderer {
 
     private String getFoodFilePath(FoodType type) {
         switch (type) {
+            case BOMB:
+                return BOMB_PATH;
+            case SLOW:
+                return SLOW_PATH;
             case SS:
                 return SS_PATH;
             case S:
