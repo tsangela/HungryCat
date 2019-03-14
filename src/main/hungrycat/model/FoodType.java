@@ -1,106 +1,41 @@
 package hungrycat.model;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.Collectors;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * Represents the types of food.
  */
+@AllArgsConstructor
+@Getter
 public enum FoodType {
     // TODO: create "bomb" with negative nutritional value and time limit
-    C(1), B(2), A(3), S(4), SS(10);
-    private final int value;
+    SS(20, 0),
+    S(10, 2),
+    A(5, 9),
+    B(2, 29),
+    C(1, 99);
+
     private static final Random RANDOM = new Random();
 
+    private final int value; // Associated nutritional value of a food type
+    private final int upper; // Upper bound of distribution spectrum
 
     /**
-     * Creates a food type with an associated nutritional value.
+     * Returns a type of food based on its probability of appearance.
      *
-     * @param value the nutritional value to be associated with the specified food type.
+     * @return a type of food.
      */
-    FoodType(int value) {
-        this.value = value;
+    public static FoodType getRandomFoodType() {
+        int random = RANDOM.nextInt(99);
+        // System.out.println(random + " -> " + foodType.name());
+        return Arrays.stream(FoodType.values())
+                .filter(type -> type.getUpper() >= random)
+                .collect(Collectors.toList())
+                .get(0);
     }
-
-    /**
-     * Returns the associated nutritional value of a food type.
-     *
-     * @return the associated nutritional value of the food type.
-     */
-    public int getValue() {
-        return value;
-    }
-
-    /**
-     * Returns the probability distribution.
-     *
-     * @return a biased list of strings of types based on their rarities.
-     */
-    private static List<String> distribution() {
-        List<String> values = new ArrayList<>();
-
-        addTo(values, "C", 55);
-        addTo(values, "B", 25);
-        addTo(values, "A", 15);
-        addTo(values, "S",  4);
-        addTo(values, "SS", 1);
-
-        return Collections.unmodifiableList(values);
-    }
-
-    /**
-     * Adds the given string to the given list prob number of times to mimic probability distribution.
-     *
-     * @param type  The type of food as a String.
-     * @param prob  The probability out of 100 of the appearance of the food type.
-     */
-    private static void addTo(List<String> list, String type, int prob) {
-        for (int i = 0; i < prob; i++)
-            list.add(type);
-    }
-
-    /**
-     * Returns the size of the list.
-     *
-     * @param l the given list of which to compute the size.
-     * @return the integer size of the list.
-     */
-    private static int getDistributionSize(List l) {
-        return l.size();
-    }
-
-    /**
-     * Returns a random type of food.
-     *
-     * @return a random FoodType item.
-     */
-    public static FoodType randomFoodType() {
-
-        FoodType type = C;
-
-        List<String> dist = distribution();
-        int size = getDistributionSize(dist);
-
-        String got = dist.get(RANDOM.nextInt(size));
-
-        switch(got) {
-            case "C":
-                type = C;
-                break;
-            case "B":
-                type = B;
-                break;
-            case "A":
-                type = A;
-                break;
-            case "S":
-                type = S;
-                break;
-            case "SS":
-                type = SS;
-                break;
-        }
-
-        return type;
-    }
-
 }
