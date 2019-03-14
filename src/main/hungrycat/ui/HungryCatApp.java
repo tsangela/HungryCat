@@ -287,7 +287,7 @@ public class HungryCatApp extends JPanel {
      *
      * @param args the arguments entered via terminal; unused.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        System.out.println("Enter your name: ");
 //        String name = br.readLine();
