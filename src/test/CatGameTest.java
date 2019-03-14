@@ -10,42 +10,42 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CatGameTest {
+class CatGameTest {
     private Game testGame;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         testGame = new Game();
     }
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         assertEquals(Direction.UP, testGame.getCat().getDirection());
         assertNotEquals(testGame.getCat().getPosition(), testGame.getFood().getPosition());
     }
 
     @Test
-    public void testHitUpperWall() {
+    void testHitUpperWall() {
         assertGameOver(Direction.UP);
     }
 
     @Test
-    public void testHitLowerWall() {
+    void testHitLowerWall() {
         assertGameOver(Direction.DOWN);
     }
 
     @Test
-    public void testHitLeftWall() {
+    void testHitLeftWall() {
         assertGameOver(Direction.LEFT);
     }
 
     @Test
-    public void testHitRightWall() {
+    void testHitRightWall() {
         assertGameOver(Direction.RIGHT);
     }
 
     @Test
-    public void testRotateCat() {
+    void testRotateCat() {
         testGame.rotateCat(Direction.UP);
         assertEquals(Direction.UP, testGame.getCat().getDirection());
         testGame.update();
@@ -63,7 +63,7 @@ public class CatGameTest {
     }
 
     @Test
-    public void testFoodCreationPosition() {
+    void testFoodCreationPosition() {
         eatFood();
         assertNotEquals(testGame.getFood().getPosition(), testGame.getCat().getPosition());
     }

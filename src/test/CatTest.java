@@ -8,17 +8,17 @@ import org.junit.jupiter.api.Test;
 import static hungrycat.model.Cell.CELL_PIXELS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CatTest {
+class CatTest {
     private Cat testCat;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         Cell cell = new Cell(Game.BOARD_ROWS / 2, Game.BOARD_COLS);
         testCat = new Cat(cell);
     }
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         Cell cell = new Cell(Game.BOARD_ROWS / 2, Game.BOARD_COLS);
         assertEquals(cell, testCat.getPosition());
         assertEquals(Direction.UP, testCat.getDirection());
@@ -26,7 +26,7 @@ public class CatTest {
     }
 
     @Test
-    public void testRotate() {
+    void testRotate() {
         assertEquals(Direction.UP, testCat.getDirection());
         testCat.move();
 
@@ -47,7 +47,7 @@ public class CatTest {
     }
 
     @Test
-    public void testMove() {
+    void testMove() {
         Cell pos = testCat.getPosition();
         int x = pos.getTopLeftX();
         int y = pos.getTopLeftY();

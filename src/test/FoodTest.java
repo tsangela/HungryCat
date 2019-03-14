@@ -8,23 +8,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class FoodTest {
+class FoodTest {
     private Food testFood;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         Cell cell = new Cell(Game.BOARD_ROWS / 2, Game.BOARD_COLS);
         testFood = new Food(cell);
     }
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         assertEquals(new Cell(Game.BOARD_ROWS / 2, Game.BOARD_COLS),
                 testFood.getPosition());
     }
 
     @Test
-    public void testFoodTypeValue() {
+    void testFoodTypeValue() {
         FoodType type = testFood.getType();
 
         switch (type) {
