@@ -1,9 +1,7 @@
 package hungrycat.model;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,12 +14,12 @@ import lombok.Getter;
 public enum FoodType {
     // Special items
     BOMB(-10, 0, 0),
-    SLOW(0, 10, 2),
+    SLOW(0, 30, 8),
     // Foods
-    SS(20, 0, 3),
-    S(10, 0, 6),
-    A(5, 0, 12),
-    B(2, 0, 35),
+    SS(20, 0, 9),
+    S(10, 0, 11),
+    A(5, 0, 15),
+    B(2, 0, 40),
     C(1, 0, 100);
 
     private static final Random RANDOM = new Random();
@@ -37,11 +35,12 @@ public enum FoodType {
      */
     public static FoodType getRandomFoodType() {
         double random = RANDOM.nextDouble() * 100;
-        List<FoodType> types = Arrays.stream(FoodType.values())
-                .filter(type -> type.getUpper() >= random)
-                .collect(Collectors.toList());
-        System.out.println(random + " -> " + types);
-        return types.get(0);
+        FoodType type = Arrays.stream(FoodType.values())
+                .filter(t -> t.getUpper() >= random)
+                .findFirst()
+                .orElse(C);
+        System.out.println(random + " -> " + type);
+        return type;
 //        return Arrays.stream(FoodType.values())
 //                .filter(type -> type.getUpper() >= random)
 //                .collect(Collectors.toList())

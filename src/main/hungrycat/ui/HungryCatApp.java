@@ -39,12 +39,12 @@ public class HungryCatApp extends JPanel {
     private static final int INTERVAL = 200;
     private static final int INTERVAL_INC = 5;
 
-    private static final String BGM_PATH = "src/main/resources/music/lv0.wav";            // Main BGM:         "Level 0" by Monplaisir
-    private static final String INTENSE_BGM_PATH = "src/main/resources/music/lv3.wav";    // Intense Mode BGM: "Level 3" by Monplaisir
-    private static final String GAME_OVER_BGM_PATH = "src/main/resources/music/over.wav"; // Game Over BGM:    "At Rest" by Kevin MacLeod
-    private static final String BANG_SFX_PATH = "src/main/resources/sfx/bang.au";
-    private static final String MEOW_SFX_PATH = "src/main/resources/sfx/meow.au";         // "Cat, Screaming, A.wav" by InspectorJ of Freesound.org
-    private static final String POP_SFX_PATH = "src/main/resources/sfx/pop.au";           // "Pop sound"             by deraj of Freesound.org
+    private static final String BGM_PATH = "../../resources/music/lv0.wav";            // Main BGM:         "Level 0" by Monplaisir
+    private static final String INTENSE_BGM_PATH = "../../resources/music/lv3.wav";    // Intense Mode BGM: "Level 3" by Monplaisir
+    private static final String GAME_OVER_BGM_PATH = "../../resources/music/over.wav"; // Game Over BGM:    "At Rest" by Kevin MacLeod
+    private static final String BANG_SFX_PATH = "../../resources/sfx/bang.au";
+    private static final String MEOW_SFX_PATH = "../../resources/sfx/meow.au";         // "Cat, Screaming, A.wav" by InspectorJ of Freesound.org
+    private static final String POP_SFX_PATH = "../../resources/sfx/pop.au";           // "Pop sound"             by deraj of Freesound.org
 
     private Game game;
     private TitleRenderer title;
@@ -117,6 +117,7 @@ public class HungryCatApp extends JPanel {
         timer.addActionListener(e -> {
             switch (game.getState()) {
                 case TITLE_STATE:
+                    // music(this.getClass().getResource(BGM_PATH).getPath());
                     music(BGM_PATH);
                     break;
                 case PAUSE_STATE:
@@ -144,8 +145,11 @@ public class HungryCatApp extends JPanel {
     private void handleGameOver() {
         game.setState(GameState.GAME_OVER_STATE);
         clip.stop();
+//        sfx(this.getClass().getResource(BANG_SFX_PATH).getPath());
+//        sfx(this.getClass().getResource(MEOW_SFX_PATH).getPath());
         sfx(BANG_SFX_PATH);
         sfx(MEOW_SFX_PATH);
+//        music(this.getClass().getResource(GAME_OVER_BGM_PATH).getPath());
         music(GAME_OVER_BGM_PATH);
         System.out.println("Final score: " + game.getCat().getFullness());
         timer.stop();
@@ -156,16 +160,31 @@ public class HungryCatApp extends JPanel {
      */
     private void speedUp() {
         int delay = timer.getDelay();
-        if (delay <= 70 && game.getState() != GameState.INTENSE_STATE) {
-            game.setState(GameState.INTENSE_STATE);
-            clip.stop();
-            music(INTENSE_BGM_PATH);
-        } else if (delay > 40) {
-            // System.out.print(delay + " -> ");
+        if (delay > 40) {
             Cat cat = game.getCat();
             int newDelay = INTERVAL - (cat.getLevel() * INTERVAL_INC) + cat.getDeceleration();
             timer.setDelay(newDelay < 40 ? 40 : newDelay);
-            // System.out.println(timer.getDelay());
+            // System.out.println(delay + " -> " + timer.getDelay());
+        }
+        switchIntense(delay);
+    }
+
+    /**
+     * Switch the game state between MAIN_STATE and INTENSE_STATE depending on speed.
+     */
+    private void switchIntense(int delay) {
+        if (delay > 70) {
+            if (game.getState() == GameState.INTENSE_STATE) {
+                game.setState(GameState.MAIN_STATE);
+                clip.stop();
+                music(BGM_PATH);
+            }
+        } else {
+            if (game.getState() != GameState.INTENSE_STATE) {
+                game.setState(GameState.INTENSE_STATE);
+                clip.stop();
+                music(INTENSE_BGM_PATH);
+            }
         }
     }
 
@@ -220,6 +239,7 @@ public class HungryCatApp extends JPanel {
                 break;
             case TITLE_STATE:
                 game.setState(GameState.MAIN_STATE);
+                // sfx(this.getClass().getResource(POP_SFX_PATH).getPath());
                 sfx(POP_SFX_PATH);
                 break;
             case GAME_OVER_STATE:
@@ -248,7 +268,8 @@ public class HungryCatApp extends JPanel {
     private void sfx(String pathName) {
         InputStream in;
         try {
-            in = new FileInputStream(pathName);
+            in = new FileInputStream(this.getClass().getResource(pathName).getPath());
+            // in = new FileInputStream(pathName);
             AudioStream audioStream = new AudioStream(in);
             AudioPlayer.player.start(audioStream);
         } catch (IOException e) {
@@ -266,7 +287,8 @@ public class HungryCatApp extends JPanel {
             return;
         }
 
-        File file = new File(pathName);
+        File file = new File(this.getClass().getResource(pathName).getPath());
+        // File file = new File(pathName);
 
         try {
             AudioInputStream stream = AudioSystem.getAudioInputStream(file);
