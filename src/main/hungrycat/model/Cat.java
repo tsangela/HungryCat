@@ -1,18 +1,21 @@
 package hungrycat.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents the cat character.
  */
 @Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Cat {
-    private Cell position;  // Position of the cat
-    private Direction direction; // Direction in which the cat is facing
-    private int fullness;  // Fullness level of the cat
-    private boolean canStep;
-    private int level;
-    private int deceleration;
+    Cell position;  // Position of the cat
+    Direction direction; // Direction in which the cat is facing
+    int fullness;  // Fullness level of the cat
+    boolean canStep;
+    int level;
+    int deceleration;
 
     /**
      * Creates a cat at given position on screen, facing up, that has consumed no food.

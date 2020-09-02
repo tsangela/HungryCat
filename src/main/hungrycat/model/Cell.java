@@ -1,18 +1,21 @@
 package hungrycat.model;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents a cell on the game board.
  */
 @Getter
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Cell {
     public static final int CELL_PIXELS = 20;
 
-    private int row;
-    private int col;
+    int row;
+    int col;
 
     /**
      * @return the x-coordinate of the top-left corner of the cell.

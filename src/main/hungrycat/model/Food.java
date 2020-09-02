@@ -1,11 +1,14 @@
 package hungrycat.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents a food item.
  */
 @Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Food {
     private Cell position; // Current position of the food
     private FoodType type;

@@ -3,14 +3,17 @@ package hungrycat.model;
 import java.util.Arrays;
 import java.util.Random;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents the types of food.
  */
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum FoodType {
     // Special items
     BOMB(-10, 0, 0),
@@ -24,9 +27,9 @@ public enum FoodType {
 
     private static final Random RANDOM = new Random();
 
-    private final int value; // Associated nutritional value of a food type
-    private final int deceleration; // Slow-down factor
-    private final double upper; // Upper bound of distribution spectrum
+    int value;        // Associated nutritional value of a food type
+    int deceleration; // Slow-down factor
+    double upper;     // Upper bound of distribution spectrum
 
     /**
      * Returns a type of food based on its probability of appearance.

@@ -3,10 +3,12 @@ package hungrycat.ui;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -36,7 +38,9 @@ import static hungrycat.model.Game.BOARD_ROWS;
 public class HungryCatApp extends JPanel {
     public static final int WIDTH = BOARD_COLS * CELL_PIXELS;
     public static final int HEIGHT = BOARD_ROWS * CELL_PIXELS;
-    private static final int INTERVAL = 200;
+    private static final int INTERVAL_1 = 200;
+    private static final int INTERVAL_2 = 150;
+    private static final int INTERVAL_3 = 100;
     private static final int INTERVAL_INC = 5;
 
     private static final String BGM_PATH = "../../resources/music/lv0.wav";            // Main BGM:         "Level 0" by Monplaisir
@@ -52,6 +56,7 @@ public class HungryCatApp extends JPanel {
     private PauseRenderer pause;
     private GameOverRenderer gameOver;
     private Timer timer;
+    private int initialInterval;
     private Clip clip;
 
     // TODO: Implement and music corresponding to interval decrements
@@ -60,7 +65,7 @@ public class HungryCatApp extends JPanel {
     /**
      * Creates and sets up the game window.
      */
-    private HungryCatApp() {
+    private HungryCatApp(int interval) {
         JFrame frame = new JFrame("Hungry Cat");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
@@ -77,7 +82,8 @@ public class HungryCatApp extends JPanel {
 
         frame.addKeyListener(new KeyHandler());
         centerOnScreen(frame);
-        timer = new Timer(INTERVAL, null);
+        timer = new Timer(interval, null);
+        initialInterval = interval;
         configureTimer();
 
         frame.add(this);
@@ -162,7 +168,7 @@ public class HungryCatApp extends JPanel {
         int delay = timer.getDelay();
         if (delay > 40) {
             Cat cat = game.getCat();
-            int newDelay = INTERVAL - (cat.getLevel() * INTERVAL_INC) + cat.getDeceleration();
+            int newDelay = initialInterval - (cat.getLevel() * INTERVAL_INC) + cat.getDeceleration();
             timer.setDelay(newDelay < 40 ? 40 : newDelay);
             // System.out.println(delay + " -> " + timer.getDelay());
         }
@@ -310,11 +316,39 @@ public class HungryCatApp extends JPanel {
      * @param args the arguments entered via terminal; unused.
      */
     public static void main(String[] args) {
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        System.out.println("Enter your name: ");
-//        String name = br.readLine();
-//        System.out.println("Welcome, " + name + "!");
+        int interval = INTERVAL_1;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("\n" +
+                "*--------------------------*\n" +
+                "*         Welcome!         *\n" +
+                "*--------------------------*\n" +
+                "1 - EZ-PZ [default]\n" +
+                "2 - MEH\n" +
+                "3 - OOF BIG YIKES\n\n" +
+                "Please enter a difficulty mode: ");
+        try {
+            String difficulty = br.readLine().trim();
+            interval = convertDifficulty(difficulty);
+        } catch (IOException e) {
+            // skip and go straight to game
+        } finally {
+            new HungryCatApp(interval);
+        }
 
-        new HungryCatApp();
+        // new HungryCatApp();
+    }
+
+    private static int convertDifficulty(String difficulty) {
+        // TODO: use map instead
+        switch (difficulty) {
+            case "1":
+                return INTERVAL_1;
+            case "2":
+                return INTERVAL_2;
+            case "3":
+                return INTERVAL_3;
+            default:
+                return INTERVAL_1;
+        }
     }
 }
