@@ -31,6 +31,7 @@ public class GameOverRenderer extends AbstractRenderer {
         r.draw(graphics);
         drawGameOver(graphics);
         drawOmae(graphics);
+        drawRestart(graphics);
         drawCredits(graphics);
     }
 
@@ -62,6 +63,21 @@ public class GameOverRenderer extends AbstractRenderer {
         int x = (WIDTH - graphics.getFontMetrics().stringWidth(text)) / 2;
         int y = (HEIGHT / 2) + 30;
         drawText(graphics, OMAE_COLOR, text, x, y);
+    }
+
+    /**
+     * Draws "- Press the space bar to restart -" onto the screen.
+     *
+     * @param graphics the graphics on which to be drawn.
+     */
+    private void drawRestart(Graphics graphics) {
+        Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+        String text = "- Press the space bar to restart -";
+        graphics.setFont(font);
+
+        int x = (WIDTH - graphics.getFontMetrics().stringWidth(text)) / 2;
+        int y = (HEIGHT / 2) + 70;
+        drawText(graphics, TEXT_COLOR, text, x, y);
     }
 
     /**

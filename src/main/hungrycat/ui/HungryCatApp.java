@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -17,6 +18,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
+import com.google.common.collect.ImmutableMap;
 import hungrycat.model.Cat;
 import hungrycat.model.Direction;
 import hungrycat.model.Game;
@@ -25,6 +27,8 @@ import hungrycat.ui.renderer.GameOverRenderer;
 import hungrycat.ui.renderer.MainRenderer;
 import hungrycat.ui.renderer.PauseRenderer;
 import hungrycat.ui.renderer.TitleRenderer;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -35,9 +39,11 @@ import static hungrycat.model.Game.BOARD_ROWS;
 /**
  * Represents the Hungry Cat game application.
  */
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class HungryCatApp extends JPanel {
     public static final int WIDTH = BOARD_COLS * CELL_PIXELS;
     public static final int HEIGHT = BOARD_ROWS * CELL_PIXELS;
+
     private static final int INTERVAL_1 = 200;
     private static final int INTERVAL_2 = 150;
     private static final int INTERVAL_3 = 100;
@@ -50,16 +56,21 @@ public class HungryCatApp extends JPanel {
     private static final String MEOW_SFX_PATH = "../../resources/sfx/meow.au";         // "Cat, Screaming, A.wav" by InspectorJ of Freesound.org
     private static final String POP_SFX_PATH = "../../resources/sfx/pop.au";           // "Pop sound"             by deraj of Freesound.org
 
-    private Game game;
-    private TitleRenderer title;
-    private MainRenderer main;
-    private PauseRenderer pause;
-    private GameOverRenderer gameOver;
-    private Timer timer;
-    private int initialInterval;
-    private Clip clip;
+    private static final Map<String, Integer> INTERVALS = ImmutableMap.of(
+            "1", INTERVAL_1,
+            "2", INTERVAL_2,
+            "3", INTERVAL_3
+    );
 
-    // TODO: Implement and music corresponding to interval decrements
+    Game game;
+    TitleRenderer title;
+    MainRenderer main;
+    PauseRenderer pause;
+    GameOverRenderer gameOver;
+    Timer timer;
+    Clip clip;
+    int initialInterval;
+
     public static GameState unpauseState;
 
     /**
@@ -130,7 +141,8 @@ public class HungryCatApp extends JPanel {
                     if (!timer.isRunning())
                         timer.stop();
                     break;
-                default:
+                case MAIN_STATE:
+                case INTENSE_STATE:
                     game.update();
                     speedUp();
                     if (game.isGameOver()) {
@@ -170,7 +182,6 @@ public class HungryCatApp extends JPanel {
             Cat cat = game.getCat();
             int newDelay = initialInterval - (cat.getLevel() * INTERVAL_INC) + cat.getDeceleration();
             timer.setDelay(newDelay < 40 ? 40 : newDelay);
-            // System.out.println(delay + " -> " + timer.getDelay());
         }
         switchIntense(delay);
     }
@@ -241,7 +252,7 @@ public class HungryCatApp extends JPanel {
         switch (game.getState()) {
             case PAUSE_STATE:
                 game.setState(unpauseState);
-                clip.start();
+                loopStartMusic();
                 break;
             case TITLE_STATE:
                 game.setState(GameState.MAIN_STATE);
@@ -249,6 +260,11 @@ public class HungryCatApp extends JPanel {
                 sfx(POP_SFX_PATH);
                 break;
             case GAME_OVER_STATE:
+                game.restart();
+                timer.restart();
+                clip.stop();
+                music(BGM_PATH);
+                loopStartMusic();
                 break;
             default:
                 unpauseState = game.getState();
@@ -275,12 +291,16 @@ public class HungryCatApp extends JPanel {
         InputStream in;
         try {
             in = new FileInputStream(this.getClass().getResource(pathName).getPath());
-            // in = new FileInputStream(pathName);
             AudioStream audioStream = new AudioStream(in);
             AudioPlayer.player.start(audioStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loopStartMusic() {
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.start();
     }
 
     /**
@@ -306,8 +326,7 @@ public class HungryCatApp extends JPanel {
             throw new Error(e.getMessage());
         }
 
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
-        clip.start();
+        loopStartMusic();
     }
 
     /**
@@ -316,39 +335,23 @@ public class HungryCatApp extends JPanel {
      * @param args the arguments entered via terminal; unused.
      */
     public static void main(String[] args) {
-        int interval = INTERVAL_1;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("\n" +
                 "*--------------------------*\n" +
                 "*         Welcome!         *\n" +
                 "*--------------------------*\n" +
-                "1 - EZ-PZ [default]\n" +
-                "2 - MEH\n" +
-                "3 - OOF BIG YIKES\n\n" +
+                "1 - My eyes are closed [default]\n" +
+                "2 - I am a regular human being\n" +
+                "3 - Mom, pick me up, I'm scared\n\n" +
                 "Please enter a difficulty mode: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int interval = INTERVAL_1;
         try {
             String difficulty = br.readLine().trim();
-            interval = convertDifficulty(difficulty);
+            interval = INTERVALS.get(difficulty);
         } catch (IOException e) {
             // skip and go straight to game
         } finally {
             new HungryCatApp(interval);
-        }
-
-        // new HungryCatApp();
-    }
-
-    private static int convertDifficulty(String difficulty) {
-        // TODO: use map instead
-        switch (difficulty) {
-            case "1":
-                return INTERVAL_1;
-            case "2":
-                return INTERVAL_2;
-            case "3":
-                return INTERVAL_3;
-            default:
-                return INTERVAL_1;
         }
     }
 }

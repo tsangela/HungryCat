@@ -53,6 +53,15 @@ public class Game {
     }
 
     /**
+     * Restarts the game.
+     */
+    public void restart() {
+        cat = new Cat(new Cell(BOARD_ROWS / 2, BOARD_COLS / 2));
+        food = createFood();
+        state = GameState.TITLE_STATE;
+    }
+
+    /**
      * Returns true if the cat is within the game window, false otherwise.
      *
      * @return true if the cat's position is within the frame, false otherwise.

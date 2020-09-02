@@ -17,11 +17,11 @@ import lombok.experimental.FieldDefaults;
 public enum FoodType {
     // Special items
     BOMB(-10, 0, 0),
-    SLOW(0, 30, 8),
+    SLOW(0, 30, 2),
     // Foods
-    SS(20, 0, 9),
-    S(10, 0, 11),
-    A(5, 0, 15),
+    SS(20, 0, 5),
+    S(10, 0, 10),
+    A(5, 0, 20),
     B(2, 0, 40),
     C(1, 0, 100);
 
@@ -42,7 +42,6 @@ public enum FoodType {
                 .filter(t -> t.getUpper() >= random)
                 .findFirst()
                 .orElse(C);
-        System.out.println(random + " -> " + type);
         return type;
 //        return Arrays.stream(FoodType.values())
 //                .filter(type -> type.getUpper() >= random)
