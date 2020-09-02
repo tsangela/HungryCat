@@ -1,4 +1,4 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import hungrycat.model.Cell;
-import hungrycat.model.Game;
+import model.Cell;
+import model.Game;
 
 
 public abstract class AbstractRenderer {

@@ -1,4 +1,4 @@
-package hungrycat.model;
+package model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;

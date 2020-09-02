@@ -1,19 +1,19 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 import java.io.IOException;
 
-import hungrycat.model.Cat;
-import hungrycat.model.Cell;
-import hungrycat.model.Direction;
-import hungrycat.model.Food;
-import hungrycat.model.FoodType;
-import hungrycat.model.Game;
-import hungrycat.model.GameState;
+import model.Cat;
+import model.Cell;
+import model.Direction;
+import model.Food;
+import model.FoodType;
+import model.Game;
+import model.GameState;
 
-import static hungrycat.ui.HungryCatApp.HEIGHT;
-import static hungrycat.ui.HungryCatApp.WIDTH;
-import static hungrycat.ui.HungryCatApp.unpauseState;
+import static ui.HungryCatApp.HEIGHT;
+import static ui.HungryCatApp.WIDTH;
+import static ui.HungryCatApp.unpauseState;
 
 /**
  * Represents a Hungry Cat game renderer.

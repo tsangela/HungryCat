@@ -1,10 +1,10 @@
-package hungrycat.model;
+package model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import static hungrycat.model.Cell.CELL_PIXELS;
+import static model.Cell.CELL_PIXELS;
 
 public class CatTest {
     private static final Cell CELL = new Cell(Game.BOARD_ROWS / 2, Game.BOARD_COLS);

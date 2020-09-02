@@ -1,4 +1,4 @@
-package hungrycat.ui;
+package ui;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -19,22 +19,22 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import com.google.common.collect.ImmutableMap;
-import hungrycat.model.Cat;
-import hungrycat.model.Direction;
-import hungrycat.model.Game;
-import hungrycat.model.GameState;
-import hungrycat.ui.renderer.GameOverRenderer;
-import hungrycat.ui.renderer.MainRenderer;
-import hungrycat.ui.renderer.PauseRenderer;
-import hungrycat.ui.renderer.TitleRenderer;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import model.Cat;
+import model.Direction;
+import model.Game;
+import model.GameState;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+import ui.renderer.GameOverRenderer;
+import ui.renderer.MainRenderer;
+import ui.renderer.PauseRenderer;
+import ui.renderer.TitleRenderer;
 
-import static hungrycat.model.Cell.CELL_PIXELS;
-import static hungrycat.model.Game.BOARD_COLS;
-import static hungrycat.model.Game.BOARD_ROWS;
+import static model.Cell.CELL_PIXELS;
+import static model.Game.BOARD_COLS;
+import static model.Game.BOARD_ROWS;
 
 /**
  * Represents the Hungry Cat game application.
@@ -49,12 +49,12 @@ public class HungryCatApp extends JPanel {
     private static final int INTERVAL_3 = 100;
     private static final int INTERVAL_INC = 5;
 
-    private static final String BGM_PATH = "../../resources/music/lv0.wav";            // Main BGM:         "Level 0" by Monplaisir
-    private static final String INTENSE_BGM_PATH = "../../resources/music/lv3.wav";    // Intense Mode BGM: "Level 3" by Monplaisir
-    private static final String GAME_OVER_BGM_PATH = "../../resources/music/over.wav"; // Game Over BGM:    "At Rest" by Kevin MacLeod
-    private static final String BANG_SFX_PATH = "../../resources/sfx/bang.au";
-    private static final String MEOW_SFX_PATH = "../../resources/sfx/meow.au";         // "Cat, Screaming, A.wav" by InspectorJ of Freesound.org
-    private static final String POP_SFX_PATH = "../../resources/sfx/pop.au";           // "Pop sound"             by deraj of Freesound.org
+    private static final String BGM_PATH = "../music/lv0.wav";            // Main BGM:         "Level 0" by Monplaisir
+    private static final String INTENSE_BGM_PATH = "../music/lv3.wav";    // Intense Mode BGM: "Level 3" by Monplaisir
+    private static final String GAME_OVER_BGM_PATH = "../music/over.wav"; // Game Over BGM:    "At Rest" by Kevin MacLeod
+    private static final String BANG_SFX_PATH = "../sfx/bang.au";
+    private static final String MEOW_SFX_PATH = "../sfx/meow.au";         // "Cat, Screaming, A.wav" by InspectorJ of Freesound.org
+    private static final String POP_SFX_PATH = "../sfx/pop.au";           // "Pop sound"             by deraj of Freesound.org
 
     private static final Map<String, Integer> INTERVALS = ImmutableMap.of(
             "1", INTERVAL_1,
@@ -134,7 +134,6 @@ public class HungryCatApp extends JPanel {
         timer.addActionListener(e -> {
             switch (game.getState()) {
                 case TITLE_STATE:
-                    // music(this.getClass().getResource(BGM_PATH).getPath());
                     music(BGM_PATH);
                     break;
                 case PAUSE_STATE:
@@ -163,11 +162,8 @@ public class HungryCatApp extends JPanel {
     private void handleGameOver() {
         game.setState(GameState.GAME_OVER_STATE);
         clip.stop();
-//        sfx(this.getClass().getResource(BANG_SFX_PATH).getPath());
-//        sfx(this.getClass().getResource(MEOW_SFX_PATH).getPath());
         sfx(BANG_SFX_PATH);
         sfx(MEOW_SFX_PATH);
-//        music(this.getClass().getResource(GAME_OVER_BGM_PATH).getPath());
         music(GAME_OVER_BGM_PATH);
         System.out.println("Final score: " + game.getCat().getFullness());
         timer.stop();
@@ -256,7 +252,6 @@ public class HungryCatApp extends JPanel {
                 break;
             case TITLE_STATE:
                 game.setState(GameState.MAIN_STATE);
-                // sfx(this.getClass().getResource(POP_SFX_PATH).getPath());
                 sfx(POP_SFX_PATH);
                 break;
             case GAME_OVER_STATE:

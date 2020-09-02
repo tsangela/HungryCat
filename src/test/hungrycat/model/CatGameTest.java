@@ -1,4 +1,4 @@
-package hungrycat.model;
+package model;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import static hungrycat.model.Game.BOARD_ROWS;
+import static model.Game.BOARD_ROWS;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CatGameTest {

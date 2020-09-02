@@ -1,4 +1,4 @@
-package hungrycat.model;
+package model;
 
 import lombok.AccessLevel;
 import lombok.Getter;
