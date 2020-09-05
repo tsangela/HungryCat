@@ -1,4 +1,4 @@
-package hungrycat.model;
+package model;
 
 import java.util.Random;
 
@@ -14,7 +14,6 @@ public class Game {
     public static final int BOARD_COLS = BOARD_ROWS;
     private static final Random RANDOM = new Random();
 
-    // private Random random;
     private Cat cat;
     private Food food;
     @Setter
@@ -25,7 +24,6 @@ public class Game {
      * a random cell set to the title game state.
      */
     public Game() {
-        // random = new Random();
         cat = new Cat(new Cell(BOARD_ROWS / 2, BOARD_COLS / 2));
         food = createFood();
         state = GameState.TITLE_STATE;
@@ -52,6 +50,15 @@ public class Game {
      */
     public boolean isGameOver() {
         return !isInFrame(cat.getPosition());
+    }
+
+    /**
+     * Restarts the game.
+     */
+    public void restart() {
+        cat = new Cat(new Cell(BOARD_ROWS / 2, BOARD_COLS / 2));
+        food = createFood();
+        state = GameState.TITLE_STATE;
     }
 
     /**

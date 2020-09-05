@@ -1,29 +1,35 @@
-package hungrycat.model;
+package model;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.Collectors;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents the types of food.
  */
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum FoodType {
-    // TODO: create "bomb" with negative nutritional value and time limit
-    SS(20, 0),
-    S(10, 2),
-    A(5, 9),
-    B(2, 29),
-    C(1, 99);
+    // Special items
+    BOMB(-10, 0, 0),
+    SLOW(0, 30, 2),
+    // Foods
+    SS(20, 0, 5),
+    S(10, 0, 10),
+    A(5, 0, 20),
+    B(2, 0, 40),
+    C(1, 0, 100);
 
     private static final Random RANDOM = new Random();
 
-    private final int value; // Associated nutritional value of a food type
-    private final int upper; // Upper bound of distribution spectrum
+    int value;        // Associated nutritional value of a food type
+    int deceleration; // Slow-down factor
+    double upper;     // Upper bound of distribution spectrum
 
     /**
      * Returns a type of food based on its probability of appearance.
@@ -31,11 +37,15 @@ public enum FoodType {
      * @return a type of food.
      */
     public static FoodType getRandomFoodType() {
-        int random = RANDOM.nextInt(99);
-        // System.out.println(random + " -> " + foodType.name());
-        return Arrays.stream(FoodType.values())
-                .filter(type -> type.getUpper() >= random)
-                .collect(Collectors.toList())
-                .get(0);
+        double random = RANDOM.nextDouble() * 100;
+        FoodType type = Arrays.stream(FoodType.values())
+                .filter(t -> t.getUpper() >= random)
+                .findFirst()
+                .orElse(C);
+        return type;
+//        return Arrays.stream(FoodType.values())
+//                .filter(type -> type.getUpper() >= random)
+//                .collect(Collectors.toList())
+//                .get(0);
     }
 }

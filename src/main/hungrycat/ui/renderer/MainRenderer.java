@@ -1,19 +1,19 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 import java.io.IOException;
 
-import hungrycat.model.Cat;
-import hungrycat.model.Cell;
-import hungrycat.model.Direction;
-import hungrycat.model.Food;
-import hungrycat.model.FoodType;
-import hungrycat.model.Game;
-import hungrycat.model.GameState;
+import model.Cat;
+import model.Cell;
+import model.Direction;
+import model.Food;
+import model.FoodType;
+import model.Game;
+import model.GameState;
 
-import static hungrycat.ui.HungryCatApp.HEIGHT;
-import static hungrycat.ui.HungryCatApp.WIDTH;
-import static hungrycat.ui.HungryCatApp.unpauseState;
+import static ui.HungryCatApp.HEIGHT;
+import static ui.HungryCatApp.WIDTH;
+import static ui.HungryCatApp.unpauseState;
 
 /**
  * Represents a Hungry Cat game renderer.
@@ -36,6 +36,8 @@ public class MainRenderer extends AbstractRenderer {
     private static final String A_PATH = "src/main/resources/food/A.png";
     private static final String B_PATH = "src/main/resources/food/B.png";
     private static final String C_PATH = "src/main/resources/food/C.png";
+    private static final String BOMB_PATH = "src/main/resources/food/BOMB.png";
+    private static final String SLOW_PATH = "src/main/resources/food/SLOW.png";
 
     /**
      * Creates a feeder game renderer set to the given game.
@@ -64,7 +66,6 @@ public class MainRenderer extends AbstractRenderer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // TODO: draw level! (bottom left corner? right corner?)
     }
 
     /**
@@ -136,6 +137,10 @@ public class MainRenderer extends AbstractRenderer {
 
     private String getFoodFilePath(FoodType type) {
         switch (type) {
+            case BOMB:
+                return BOMB_PATH;
+            case SLOW:
+                return SLOW_PATH;
             case SS:
                 return SS_PATH;
             case S:

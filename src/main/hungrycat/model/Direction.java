@@ -1,4 +1,4 @@
-package hungrycat.model;
+package model;
 
 /**
  * Represents the direction the cat faces.

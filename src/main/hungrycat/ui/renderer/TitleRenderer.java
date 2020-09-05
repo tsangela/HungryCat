@@ -1,11 +1,11 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 
-import hungrycat.model.Game;
+import model.Game;
 
-import static hungrycat.ui.HungryCatApp.HEIGHT;
-import static hungrycat.ui.HungryCatApp.WIDTH;
+import static ui.HungryCatApp.HEIGHT;
+import static ui.HungryCatApp.WIDTH;
 
 /**
  * Represents a title renderer.

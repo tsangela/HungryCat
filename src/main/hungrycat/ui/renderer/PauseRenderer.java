@@ -1,9 +1,9 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 
-import hungrycat.model.Game;
-import hungrycat.ui.HungryCatApp;
+import model.Game;
+import ui.HungryCatApp;
 
 public class PauseRenderer extends AbstractRenderer {
     private static final Color TEXT_COLOR = new Color(0, 0, 0);

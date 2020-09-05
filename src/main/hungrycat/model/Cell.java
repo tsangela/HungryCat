@@ -1,46 +1,23 @@
-package hungrycat.model;
+package model;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents a cell on the game board.
  */
+@Getter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Cell {
     public static final int CELL_PIXELS = 20;
 
-    private int row;
-    private int col;
+    int row;
+    int col;
 
     /**
-     * Creates a cell at the given row and col on the board.
-     *
-     * @param row   The row of the cell.
-     * @param col   The column of the cell.
-     */
-    public Cell(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
-
-    /**
-     * Returns the row of the cell.
-     *
-     * @return the row number of the cell.
-     */
-    public int getRow() {
-        return row;
-    }
-
-    /**
-     * Returns the column of the cell.
-     *
-     * @return the column number of the cell.
-     */
-    public int getCol() {
-        return col;
-    }
-
-    /**
-     * Returns the x-coordinate of the top-left corner of the cell.
-     *
      * @return the x-coordinate of the top-left corner of the cell.
      */
     public int getTopLeftX() {
@@ -48,8 +25,6 @@ public class Cell {
     }
 
     /**
-     * Returns the y-coordinate of the top-left corner of the cell.
-     *
      * @return the y-coordinate of the top-left corner of the cell.
      */
     public int getTopLeftY() {

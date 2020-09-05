@@ -1,4 +1,4 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import hungrycat.model.Cell;
-import hungrycat.model.Game;
+import model.Cell;
+import model.Game;
 
 
 public abstract class AbstractRenderer {
@@ -26,21 +26,21 @@ public abstract class AbstractRenderer {
     public abstract void draw(Graphics graphics);
 
     /**
-     * Helper: Draws the given text onto the given graphics.
+     * Draws the given text onto the given graphics.
      *
      * @param graphics the graphics on which to be drawn.
      */
-    protected void drawText(Graphics graphics, Color color, String text, int x, int y) {
+    void drawText(Graphics graphics, Color color, String text, int x, int y) {
         graphics.setColor(color);
         graphics.drawString(text, x, y);
     }
 
     /**
-     * Helper: Draws the given image onto the given graphics.
+     * Draws the given image onto the given graphics.
      *
      * @param graphics the graphics on which to be drawn.
      */
-    protected void drawImage(Graphics graphics, String pathName, double fillPercent, int x, int y) throws IOException {
+    void drawImage(Graphics graphics, String pathName, double fillPercent, int x, int y) throws IOException {
         File file = new File(pathName);
         final BufferedImage image = ImageIO.read(file);
         final int size = (int) (Cell.CELL_PIXELS * fillPercent);

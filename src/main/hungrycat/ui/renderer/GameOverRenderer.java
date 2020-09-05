@@ -1,11 +1,11 @@
-package hungrycat.ui.renderer;
+package ui.renderer;
 
 import java.awt.*;
 
-import hungrycat.model.Game;
+import model.Game;
 
-import static hungrycat.ui.HungryCatApp.HEIGHT;
-import static hungrycat.ui.HungryCatApp.WIDTH;
+import static ui.HungryCatApp.HEIGHT;
+import static ui.HungryCatApp.WIDTH;
 
 public class GameOverRenderer extends AbstractRenderer {
     private static final Color TEXT_COLOR = new Color(82, 82, 82);
@@ -31,6 +31,7 @@ public class GameOverRenderer extends AbstractRenderer {
         r.draw(graphics);
         drawGameOver(graphics);
         drawOmae(graphics);
+        drawRestart(graphics);
         drawCredits(graphics);
     }
 
@@ -62,6 +63,21 @@ public class GameOverRenderer extends AbstractRenderer {
         int x = (WIDTH - graphics.getFontMetrics().stringWidth(text)) / 2;
         int y = (HEIGHT / 2) + 30;
         drawText(graphics, OMAE_COLOR, text, x, y);
+    }
+
+    /**
+     * Draws "- Press the space bar to restart -" onto the screen.
+     *
+     * @param graphics the graphics on which to be drawn.
+     */
+    private void drawRestart(Graphics graphics) {
+        Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+        String text = "- Press the space bar to restart -";
+        graphics.setFont(font);
+
+        int x = (WIDTH - graphics.getFontMetrics().stringWidth(text)) / 2;
+        int y = (HEIGHT / 2) + 70;
+        drawText(graphics, TEXT_COLOR, text, x, y);
     }
 
     /**
